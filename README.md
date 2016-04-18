@@ -1,7 +1,7 @@
 # Purnukka
 A tiny browser and URL based encryption tool to share text safely.
 
-With this tool, you can create URL's that contain your passwordd encrypted message in the hash part of the URL.
+With this tool, you can create URL's that contain your password encrypted message in the hash part of the URL.
 Opening this URL shows a decryption UI that'll let you decrypt the message with the password.
 
 It's fully on the client side and runs on JavaScript with [crypto-js](https://github.com/brix/crypto-js). The data, even when encrypted isn't being sent to the server.
