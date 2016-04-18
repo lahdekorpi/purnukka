@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Purnukka</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet"><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <h1><a href="./">Purnukka</a></h1><br/>
+        <div class="panel panel-success hidden" id="decrypt">
+            <div class="panel-heading">
+                <h3 class="panel-title">Decrypt</h3>
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <span class="input-group-addon">Password</span>
+                    <input class="form-control" id="decrypt-password" placeholder="Password" type="password"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="decrypt-button" type="button">Decrypt</button>
+                    </span>
+                </div><br/>
+                <label for="result">Result</label> 
+                <textarea class="form-control" id="result" name="result" placeholder="Plaintext" readonly="true" rows="10" style="background: white"></textarea>
+            </div>
+        </div>
+        <div class="panel panel-warning" id="encrypt">
+            <div class="panel-heading">
+                <h3 class="panel-title">Encrypt</h3>
+            </div>
+            <div class="panel-body">
+                <label for="data">Enter text to be encrypted</label>
+		<div id="alert" class="hidden alert alert-warning">You should keep the length of the text under a few thousand characters as the full text will be encrypted and encoded in the URL.</div>
+                <textarea class="form-control" id="data" name="data" placeholder="Plaintext" rows="10" maxlength="2000"></textarea><br/>
+                <div class="input-group">
+                    <span class="input-group-addon">Password</span>
+                    <input class="form-control" id="encrypt-password" placeholder="Password" type="password"/>
+                    <span class="input-group-addon">Repeat</span>
+                    <input class="form-control" id="encrypt-password-repeat" placeholder="Password" type="password"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="encrypt-button" type="button">Generate URL</button>
+                    </span>
+                </div><!-- /input-group -->
+                <br/>
+                <label for="url">Resulting encrypted address</label>
+                <div class="input-group">
+                    <span class="input-group-addon">URL</span>
+                    <input class="form-control" id="url" onclick="this.select();" placeholder="...encrypt first..." readonly="true" type="text"/>
+                    <span class="input-group-btn">
+                        <a id="url-link" href="" target="_blank" class="btn btn-default disabled"><img class="external" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTEuNjI2IDUxMS42MjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMS42MjYgNTExLjYyNzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxnPjxwYXRoIGQ9Ik0zOTIuODU3LDI5Mi4zNTRoLTE4LjI3NGMtMi42NjksMC00Ljg1OSwwLjg1NS02LjU2MywyLjU3M2MtMS43MTgsMS43MDgtMi41NzMsMy44OTctMi41NzMsNi41NjN2OTEuMzYxICAgIGMwLDEyLjU2My00LjQ3LDIzLjMxNS0xMy40MTUsMzIuMjYyYy04Ljk0NSw4Ljk0NS0xOS43MDEsMTMuNDE0LTMyLjI2NCwxMy40MTRIODIuMjI0Yy0xMi41NjIsMC0yMy4zMTctNC40NjktMzIuMjY0LTEzLjQxNCAgICBjLTguOTQ1LTguOTQ2LTEzLjQxNy0xOS42OTgtMTMuNDE3LTMyLjI2MlYxNTUuMzFjMC0xMi41NjIsNC40NzEtMjMuMzEzLDEzLjQxNy0zMi4yNTljOC45NDctOC45NDcsMTkuNzAyLTEzLjQxOCwzMi4yNjQtMTMuNDE4ICAgIGgyMDAuOTk0YzIuNjY5LDAsNC44NTktMC44NTksNi41Ny0yLjU3YzEuNzExLTEuNzEzLDIuNTY2LTMuOSwyLjU2Ni02LjU2N1Y4Mi4yMjFjMC0yLjY2Mi0wLjg1NS00Ljg1My0yLjU2Ni02LjU2MyAgICBjLTEuNzExLTEuNzEzLTMuOTAxLTIuNTY4LTYuNTctMi41NjhIODIuMjI0Yy0yMi42NDgsMC00Mi4wMTYsOC4wNDItNTguMTAyLDI0LjEyNUM4LjA0MiwxMTMuMjk3LDAsMTMyLjY2NSwwLDE1NS4zMTN2MjM3LjU0MiAgICBjMCwyMi42NDcsOC4wNDIsNDIuMDE4LDI0LjEyMyw1OC4wOTVjMTYuMDg2LDE2LjA4NCwzNS40NTQsMjQuMTMsNTguMTAyLDI0LjEzaDIzNy41NDNjMjIuNjQ3LDAsNDIuMDE3LTguMDQ2LDU4LjEwMS0yNC4xMyAgICBjMTYuMDg1LTE2LjA3NywyNC4xMjctMzUuNDQ3LDI0LjEyNy01OC4wOTV2LTkxLjM1OGMwLTIuNjY5LTAuODU2LTQuODU5LTIuNTc0LTYuNTcgICAgQzM5Ny43MDksMjkzLjIwOSwzOTUuNTE5LDI5Mi4zNTQsMzkyLjg1NywyOTIuMzU0eiIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik01MDYuMTk5LDQxLjk3MWMtMy42MTctMy42MTctNy45MDUtNS40MjQtMTIuODUtNS40MjRIMzQ3LjE3MWMtNC45NDgsMC05LjIzMywxLjgwNy0xMi44NDcsNS40MjQgICAgYy0zLjYxNywzLjYxNS01LjQyOCw3Ljg5OC01LjQyOCwxMi44NDdzMS44MTEsOS4yMzMsNS40MjgsMTIuODVsNTAuMjQ3LDUwLjI0OEwxOTguNDI0LDMwNC4wNjcgICAgYy0xLjkwNiwxLjkwMy0yLjg1Niw0LjA5My0yLjg1Niw2LjU2M2MwLDIuNDc5LDAuOTUzLDQuNjY4LDIuODU2LDYuNTcxbDMyLjU0OCwzMi41NDRjMS45MDMsMS45MDMsNC4wOTMsMi44NTIsNi41NjcsMi44NTIgICAgczQuNjY1LTAuOTQ4LDYuNTY3LTIuODUybDE4Ni4xNDgtMTg2LjE0OGw1MC4yNTEsNTAuMjQ4YzMuNjE0LDMuNjE3LDcuODk4LDUuNDI2LDEyLjg0Nyw1LjQyNnM5LjIzMy0xLjgwOSwxMi44NTEtNS40MjYgICAgYzMuNjE3LTMuNjE2LDUuNDI0LTcuODk4LDUuNDI0LTEyLjg0N1Y1NC44MThDNTExLjYyNiw0OS44NjYsNTA5LjgxMyw0NS41ODYsNTA2LjE5OSw0MS45NzF6IiBmaWxsPSIjRkZGRkZGIi8+PC9nPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48L3N2Zz4=" /></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js">
+    </script> 
+    <script src="js/crypto-js/crypto-js.js">
+    </script> 
+    <script src="js/main.js">
+    </script>
+</body>
+</html>

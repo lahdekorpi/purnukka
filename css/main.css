@@ -1,0 +1,16 @@
+h1 {
+	margin: 100px 0 20px
+}
+
+h1 a {
+	color: black;
+	font-weight: 300;
+}
+#url {
+	background: #f0f0f0;
+}
+img.external {
+	width: 14px;
+	height: 14px;
+	margin-top: -3px;
+}
