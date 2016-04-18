@@ -1,6 +1,8 @@
 # Purnukka
 A tiny browser and URL based encryption tool to share text safely.
 
+*[Hosted in GH pages](http://lahdekorpi.github.io/purnukka/)*
+
 With this tool, you can create URL's that contain your password encrypted message in the hash part of the URL.
 Opening this URL shows a decryption UI that'll let you decrypt the message with the password.
 
