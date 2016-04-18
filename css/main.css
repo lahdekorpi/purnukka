@@ -14,3 +14,8 @@ img.external {
 	height: 14px;
 	margin-top: -3px;
 }
+@media (max-width:500px) { 
+	.input-group-addon { display: block; width: 100%}
+	.input-group-btn .btn { height: 67px; }
+	img.external { margin-top: 16px; }
+}
